@@ -237,3 +237,11 @@ body {
     max-width: calc((100% - 32px) / 3);   /* 一排最多三張 */
   }
 }
+
+/* ===== 首頁封面圖：和內文圖一樣的凹陷 bevel ===== */
+.thumb {
+  box-sizing: border-box;
+  height: auto;
+  border: 6px solid;
+  border-color: #2c3c8c #b8c4ff #b8c4ff #2c3c8c;
+}
