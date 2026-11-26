@@ -15,10 +15,6 @@ layout: default
   <h1 class="yellow">{{ page.title }}</h1>
   <p class="meta">{{ page.date | date: "%Y年%-m月%-d日" }} ／ {{ page.author }}</p>
 
-  {% if page.cover %}
-  <p class="center"><img src="{{ page.cover | relative_url }}" alt="{{ page.title }}" class="cover"></p>
-  {% endif %}
-
   {% if parts.size > 1 %}
   <div class="article two-col" data-show="zh">
     <div class="col col-zh" lang="zh-Hant">{{ parts[0] }}</div>
