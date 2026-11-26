@@ -100,7 +100,7 @@ body {
   overflow: hidden;
   box-sizing: border-box;
 }
-.header, body > hr { flex: none; }
+.header, body > hr, .page-heading { flex: none; }
 
 .stage {
   flex: 1;
@@ -122,3 +122,17 @@ body {
   scrollbar-color: #ffff33 #5f77d6;
 }
 .window .box { margin: 16px auto; }
+
+/* 手機（寬度 700px 以下）：取消固定，整頁正常捲動 */
+@media (max-width: 700px) {
+  body { display: block; height: auto; overflow: visible; }
+  .stage { display: block; container-type: normal; }
+  .window {
+    width: auto;
+    height: auto;
+    overflow: visible;
+    border: 0;
+    outline: 0;
+    padding: 0;
+  }
+}
