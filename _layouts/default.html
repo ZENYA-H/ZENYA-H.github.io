@@ -21,7 +21,12 @@
 </div>
 
 <hr>
-
+{% if page.heading %}
+<div class="page-heading">
+  <h1 class="section-title">{{ page.heading }}</h1>
+  {% if page.subheading %}<p class="center yellow small">{{ page.subheading }}</p>{% endif %}
+</div>
+{% endif %}
 <div class="stage">
   <div class="window">
     {{ content }}
