@@ -1,0 +1,12 @@
+# 網站基本設定 / Site settings
+title: "My Retro Blog"
+tagline: "Shape of dreams"
+description: "中英雙語的小部落格。A tiny bilingual blog."
+lang: zh-Hant
+
+# 如果網址是 https://帳號.github.io/repo名稱/ ，把 baseurl 改成 "/repo名稱"
+# If your site lives at https://USER.github.io/REPO/ set baseurl to "/REPO"
+baseurl: ""
+
+permalink: /posts/:year/:month/:day/:title/
+markdown: kramdown

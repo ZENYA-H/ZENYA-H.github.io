@@ -1,0 +1,83 @@
+/* Marmit 風格：藍底、黃標題、粉紅強調、雙框線 */
+body {
+  background: #5f77d6;
+  color: #ffffff;
+  font-family: "Times New Roman", "Noto Serif TC", "PMingLiU", "MS Mincho", serif;
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0;
+  padding: 12px 12px 30px;
+}
+
+a { color: #ffffff; }
+a:visited { color: #e8e0ff; }
+a:hover { color: #ffff33; }
+
+hr { border: 0; border-top: 1px solid #333366; border-bottom: 1px solid #8fa0e8; margin: 20px 0; }
+
+.yellow { color: #ffff33; }
+.pink   { color: #ff88ff; }
+.small  { font-size: 14px; }
+.center { text-align: center; }
+
+/* 頁首 Header */
+.header td { padding: 6px 16px; vertical-align: middle; }
+.logo {
+  display: inline-block;
+  background: #c8102e;
+  border: 3px solid #ffffff;
+  border-radius: 12px;
+  padding: 4px 22px 6px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 2px 2px 0 #333366;
+}
+.logo-title { display: block; color: #fff; font-style: italic; font-weight: bold; font-size: 40px; line-height: 1.1; }
+.logo-tag   { display: block; color: #fff; font-family: Arial, sans-serif; font-weight: bold; font-size: 14px; }
+.infobox {
+  border: 4px double #ffffff;
+  padding: 6px 12px;
+  font-size: 14px;
+  max-width: 380px;
+}
+
+/* 標題 */
+.section-title {
+  text-align: center;
+  color: #ffff33;
+  font-size: 40px;
+  margin: 10px 0 0;
+}
+
+/* 雙框卡片 Box */
+.box {
+  max-width: 680px;
+  margin: 24px auto;
+  border: 5px double #ffffff;
+  outline: 1px solid #8fa0e8;
+  padding: 10px 24px 16px;
+  text-align: center;
+}
+.box h1, .box h2 { margin: 8px 0; font-size: 24px; }
+.post-title { font-size: 20px; margin: 6px 0; }
+.post-title a { text-decoration: none; }
+.meta { font-size: 14px; color: #ff88ff; margin-top: 0; }
+
+.thumb {
+  width: 300px;
+  max-width: 100%;
+  background: #fff;
+  border: 0;
+  display: block;
+  margin: 10px auto 4px;
+}
+.cover { max-width: 100%; width: 420px; background: #fff; }
+
+/* 文章內文：靠左 */
+.article { text-align: left; }
+.article img { max-width: 100%; display: block; margin: 12px auto; }
+.article h2, .article h3 { color: #ffff33; }
+.article hr { border-top: 1px dashed #ffffff; border-bottom: 0; }
+.article blockquote { border-left: 3px solid #ff88ff; margin-left: 0; padding-left: 12px; }
+
+.footer { text-align: center; font-size: 13px; }

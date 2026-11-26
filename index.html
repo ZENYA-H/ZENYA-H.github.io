@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<h1 class="section-title">■最新文章■</h1>
+<p class="center yellow small">Latest posts &nbsp;/&nbsp; 中文・English</p>
+
+{% for post in site.posts %}
+<div class="box">
+  <h2 class="yellow">{{ post.date | date: "%Y年%-m月%-d日" }}</h2>
+  <a href="{{ post.url | relative_url }}">
+    <img src="{{ post.cover | relative_url }}" alt="{{ post.title }}" class="thumb">
+  </a>
+  <p class="post-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></p>
+  {% if post.excerpt_en %}<p class="pink">{{ post.excerpt_en }}</p>{% endif %}
+  <p class="small">文 / by {{ post.author }}</p>
+  <p class="yellow">↑<br>閱讀全文請點圖片！ Click the picture to read!</p>
+</div>
+{% endfor %}

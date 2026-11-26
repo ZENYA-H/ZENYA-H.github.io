@@ -1,0 +1,23 @@
+---
+layout: default
+---
+<div class="box">
+  <h1 class="yellow">{{ page.title }}</h1>
+  <p class="meta">{{ page.date | date: "%Y年%-m月%-d日" }} ／ {{ page.author }}</p>
+
+  {% if page.cover %}
+  <p class="center"><img src="{{ page.cover | relative_url }}" alt="{{ page.title }}" class="cover"></p>
+  {% endif %}
+
+  <div class="article">
+    {{ content }}
+  </div>
+</div>
+
+<p class="center">
+  {% if page.previous %}<a href="{{ page.previous.url | relative_url }}">← {{ page.previous.title }}</a>{% endif %}
+  &nbsp;&nbsp;
+  <a href="{{ '/' | relative_url }}">■ 回首頁 / Home ■</a>
+  &nbsp;&nbsp;
+  {% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>{% endif %}
+</p>
