@@ -21,25 +21,18 @@ hr { border: 0; border-top: 1px solid #333366; border-bottom: 1px solid #8fa0e8;
 .center { text-align: center; }
 
 /* 頁首 Header */
-.header td { padding: 6px 16px; vertical-align: middle; }
-.logo {
-  display: inline-block;
-  background: #c8102e;
-  border: 3px solid #ffffff;
-  border-radius: 12px;
-  padding: 4px 22px 6px;
-  text-align: center;
+.header { text-align: center; padding-top: 10px; }
+.site-title,
+.site-title:visited {
+  color: #ffff33;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 60px;          /* 「最新文章」的 1.5 倍 */
+  line-height: 1.15;
   text-decoration: none;
-  box-shadow: 2px 2px 0 #333366;
 }
-.logo-title { display: block; color: #fff; font-style: italic; font-weight: bold; font-size: 40px; line-height: 1.1; }
-.logo-tag   { display: block; color: #fff; font-family: Arial, sans-serif; font-weight: bold; font-size: 14px; }
-.infobox {
-  border: 4px double #ffffff;
-  padding: 6px 12px;
-  font-size: 14px;
-  max-width: 380px;
-}
+.site-title:hover { color: #ffff99; }
+.site-tagline { color: #ffffff; font-size: 16px; margin: 4px 0 0; }
 
 /* 標題 */
 .section-title {
