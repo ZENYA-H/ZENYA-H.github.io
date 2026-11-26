@@ -183,6 +183,8 @@ body {
 @media (max-width: 700px) {
   .two-col { display: block; }
   .two-col .col-en { border-left: 0; padding-left: 0; }
+  .two-col .col-en img:not(.keep) { display: block; }
+  .two-col .col-en p:has(> img:only-child:not(.keep)) { display: block; }
   .two-col[data-show="zh"] .col-en,
   .two-col[data-show="en"] .col-zh { display: none; }
 
