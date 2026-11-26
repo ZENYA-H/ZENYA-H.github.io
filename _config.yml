@@ -1,7 +1,7 @@
 # 網站基本設定 / Site settings
 title: "World Catalog"
-tagline: "by ZY"
-description: "A tiny bilingual blog."
+tagline: "by me and my friends"
+description: "A tiny bilingual blog about objects and artifacts."
 lang: zh-Hant
 
 # 如果網址是 https://帳號.github.io/repo名稱/ ，把 baseurl 改成 "/repo名稱"
