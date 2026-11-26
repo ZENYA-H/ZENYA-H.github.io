@@ -53,8 +53,8 @@ hr { border: 0; border-top: 1px solid #333366; border-bottom: 1px solid #8fa0e8;
 .section-title {
   text-align: center;
   color: #ffff33;
-  font-weight: 300;
-  font-size: 30px;
+  font-weight: normal;
+  font-size: 36px;
   margin: 10px 0 0;
 }
 
