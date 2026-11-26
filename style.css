@@ -228,7 +228,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 16px;
   }
   .row.full p:has(> img + img) > img {
