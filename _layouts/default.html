@@ -22,10 +22,14 @@
 
 <hr>
 
-{{ content }}
+<div class="stage">
+  <div class="window">
+    {{ content }}
 
-<hr>
-<p class="footer">(C) {{ site.time | date: "%Y" }} {{ site.title }} &nbsp;|&nbsp; <a href="{{ '/' | relative_url }}">TOP</a></p>
+    <hr>
+    <p class="footer">(C) {{ site.time | date: "%Y" }} {{ site.title }} &nbsp;|&nbsp; <a href="{{ '/' | relative_url }}">TOP</a></p>
+  </div>
+</div>
 
 </body>
 </html>
