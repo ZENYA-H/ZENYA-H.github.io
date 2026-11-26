@@ -120,7 +120,7 @@ body {
   /* 凹陷 bevel：左上暗、右下亮 */
   border: 4px solid;
   border-color: #2c3c8c #b8c4ff #b8c4ff #2c3c8c;
-  box-shadow: inset 3px 3px 6px rgba(0, 0, 40, 0.45);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 40, 0.45);
   background: #5a71cf;
   padding: 0 12px;
   scrollbar-color: #ffff33 #5f77d6;   /* 黃色捲軸 */
