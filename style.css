@@ -89,3 +89,36 @@ hr { border: 0; border-top: 1px solid #333366; border-bottom: 1px solid #8fa0e8;
 .article blockquote { border-left: 3px solid #ff88ff; margin-left: 0; padding-left: 12px; }
 
 .footer { text-align: center; font-size: 13px; }
+
+/* ===== 固定頁面＋正方形捲動窗 ===== */
+html, body { height: 100%; }
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.header, body > hr { flex: none; }
+
+.stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  container-type: size;
+}
+
+.window {
+  width: min(100cqw, 100cqh);
+  height: min(100cqw, 100cqh);
+  box-sizing: border-box;
+  overflow-y: auto;
+  border: 5px double #ffffff;
+  outline: 1px solid #8fa0e8;
+  padding: 0 12px;
+  scrollbar-color: #ffff33 #5f77d6;
+}
+.window .box { margin: 16px auto; }
