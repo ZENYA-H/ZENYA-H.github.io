@@ -221,3 +221,19 @@ body {
   .article img,
   .row.full img { max-width: min(100%, 33.333cqw); }
 }
+
+/* ===== 多張圖並排：同一段裡連續的圖片，網頁版橫排（每排最多三張），手機版直排 ===== */
+@media (min-width: 701px) {
+  .row.full p:has(> img + img) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .row.full p:has(> img + img) > img {
+    margin: 0;
+    min-width: 0;
+    max-width: calc((100% - 32px) / 3);   /* 一排最多三張 */
+  }
+}
