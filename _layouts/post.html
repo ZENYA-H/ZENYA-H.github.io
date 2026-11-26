@@ -1,10 +1,17 @@
 ---
 layout: default
 ---
-{% comment %} 用 <!-- English --> 把內文切成中文（前）和英文（後） {% endcomment %}
-{% assign parts = content | split: "<!-- English -->" %}
+{% comment %}
+  內文結構：
+  - 用 <!-- row --> 把文章切成好幾「列」。
+  - 有 <!-- English --> 的列 → 左中文、右英文。
+  - 沒有 <!-- English --> 的列 → 橫跨兩欄（放中英共用的圖片）。
+{% endcomment %}
+{% assign bilingual = false %}
+{% if content contains "<!-- English -->" %}{% assign bilingual = true %}{% endif %}
+{% assign rows = content | split: "<!-- row -->" %}
 
-{% if parts.size > 1 %}
+{% if bilingual %}
 <!-- 手機版才會顯示的語言切換按鈕 -->
 <div class="lang-toggle" role="group" aria-label="語言 Language">
   <button type="button" data-lang="zh" class="active">中文</button><button type="button" data-lang="en">English</button>
@@ -15,16 +22,22 @@ layout: default
   <h1 class="yellow">{{ page.title }}</h1>
   <p class="meta">{{ page.date | date: "%Y年%-m月%-d日" }} ／ {{ page.author }}</p>
 
-  {% if parts.size > 1 %}
-  <div class="article two-col" data-show="zh">
-    <div class="col col-zh" lang="zh-Hant">{{ parts[0] }}</div>
-    <div class="col col-en" lang="en">{{ parts[1] }}</div>
+  <div class="article bilingual" data-show="zh">
+  {% for row in rows %}
+    {% if row contains "<!-- English -->" %}
+      {% assign parts = row | split: "<!-- English -->" %}
+      <div class="row pair">
+        <div class="col col-zh" lang="zh-Hant">{{ parts[0] }}</div>
+        <div class="col col-en" lang="en">{{ parts[1] }}</div>
+      </div>
+    {% else %}
+      {% assign check = row | strip %}
+      {% if check != "" %}
+      <div class="row full">{{ row }}</div>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
   </div>
-  {% else %}
-  <div class="article">
-    {{ content }}
-  </div>
-  {% endif %}
 </div>
 
 <p class="center">
@@ -35,10 +48,10 @@ layout: default
   {% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>{% endif %}
 </p>
 
-{% if parts.size > 1 %}
+{% if bilingual %}
 <script>
 (function () {
-  var article = document.querySelector('.two-col');
+  var article = document.querySelector('.bilingual');
   var buttons = document.querySelectorAll('.lang-toggle button');
   function show(lang) {
     article.setAttribute('data-show', lang);
