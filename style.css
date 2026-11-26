@@ -31,7 +31,6 @@ hr { border: 0; border-top: 1px solid #333366; border-bottom: 1px solid #8fa0e8;
 }
 .header-title { text-align: center; }
 .infobox {
-  border: 4px double #ffffff;
   padding: 6px 12px;
   font-size: 14px;
   max-width: 360px;
@@ -62,8 +61,6 @@ hr { border: 0; border-top: 1px solid #333366; border-bottom: 1px solid #8fa0e8;
 .box {
   max-width: 680px;
   margin: 24px auto;
-  border: 5px double #ffffff;
-  outline: 1px solid #8fa0e8;
   padding: 10px 24px 16px;
   text-align: center;
 }
@@ -148,4 +145,19 @@ body {
     white-space: nowrap;
     font-size: clamp(24px, 13vw, 60px);
   }
+}
+
+/* ===== Marmit 立體雙框：外框凸起、內框凹陷（老式 HTML 表格框） ===== */
+.box, .infobox {
+  position: relative;
+  border: 2px solid;
+  border-color: #ffffff #ababab #ababab #ffffff;   /* 上 右 下 左：左上亮、右下暗 */
+}
+.box::before, .infobox::before {
+  content: "";
+  position: absolute;
+  inset: 2px;                                       /* 內外框之間的空隙 */
+  border: 1px solid;
+  border-color: #ababab #ffffff #ffffff #ababab;   /* 反過來：左上暗、右下亮 */
+  pointer-events: none;
 }
