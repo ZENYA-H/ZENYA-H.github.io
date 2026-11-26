@@ -100,7 +100,7 @@ body {
   overflow: hidden;
   box-sizing: border-box;
 }
-.header, body > hr, .page-heading { flex: none; }
+.header, body > hr, .page-heading, .footer { flex: none; }
 
 .stage {
   flex: 1;
@@ -116,8 +116,11 @@ body {
   height: min(100cqw, 100cqh);
   box-sizing: border-box;
   overflow-y: auto;
-  border: 5px double #ffffff;
-  outline: 1px solid #8fa0e8;
+  /* 凹陷 bevel：左上暗、右下亮 */
+  border: 4px solid;
+  border-color: #2c3c8c #b8c4ff #b8c4ff #2c3c8c;
+  box-shadow: inset 3px 3px 6px rgba(0, 0, 40, 0.45);
+  background: #5a71cf;
   padding: 0 12px;
   scrollbar-color: #ffff33 #5f77d6;
 }
@@ -132,7 +135,8 @@ body {
     height: auto;
     overflow: visible;
     border: 0;
-    outline: 0;
+    box-shadow: none;
+    background: none;
     padding: 0;
   }
 }
