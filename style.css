@@ -208,3 +208,16 @@ body {
     border-color: #ababab #ffffff #ffffff #ababab;   /* 按下去：凹陷 */
   }
 }
+
+/* ===== 內文圖片：凹陷 bevel 邊框，網頁版最寬為滾動框的 1/3 ===== */
+.window { container-type: inline-size; }        /* 讓圖片能以滾動框寬度計算 */
+.article img {
+  box-sizing: border-box;
+  height: auto;
+  border: 4px solid;
+  border-color: #2c3c8c #b8c4ff #b8c4ff #2c3c8c; /* 和滾動框一樣：左上暗、右下亮 */
+}
+@media (min-width: 701px) {
+  .article img,
+  .row.full img { max-width: min(100%, 33.333cqw); }
+}
