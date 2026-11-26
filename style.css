@@ -2,7 +2,7 @@
 body {
   background: #5f77d6;
   color: #ffffff;
-  font-family: "Times New Roman", "Noto Serif TC", "PMingLiU", serif;
+  font-family: "Times New Roman", "Noto Serif TC", "PMingLiU", "MS Mincho", serif;
   font-size: 17px;
   line-height: 1.7;
   margin: 0;
@@ -25,7 +25,7 @@ hr { border: 0; border-top: 1px solid #333366; border-bottom: 1px solid #8fa0e8;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap;          /* 手機上 about 框會自動換到標題下方 */
   gap: 16px 40px;
   padding-top: 10px;
 }
@@ -40,7 +40,7 @@ hr { border: 0; border-top: 1px solid #333366; border-bottom: 1px solid #8fa0e8;
 .site-title:visited {
   color: #ffff33;
   font-style: italic;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 60px;          /* 「最新文章」的 1.5 倍 */
   line-height: 1.15;
   text-decoration: none;
@@ -52,8 +52,7 @@ hr { border: 0; border-top: 1px solid #333366; border-bottom: 1px solid #8fa0e8;
 .section-title {
   text-align: center;
   color: #ffff33;
-  font-weight: normal;
-  font-size: 36px;
+  font-size: 40px;
   margin: 10px 0 0;
 }
 
@@ -86,7 +85,7 @@ hr { border: 0; border-top: 1px solid #333366; border-bottom: 1px solid #8fa0e8;
 .article hr { border-top: 1px dashed #ffffff; border-bottom: 0; }
 .article blockquote { border-left: 3px solid #ff88ff; margin-left: 0; padding-left: 12px; }
 
-.footer { text-align: center; font-size: 13px; }
+.footer { text-align: center; font-size: 13px; margin: 10px 0 0; }
 
 /* ===== 固定頁面＋正方形捲動窗 ===== */
 html, body { height: 100%; }
@@ -94,22 +93,25 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
+  height: 100dvh;           /* 手機瀏覽器網址列也算進去 */
+  overflow: hidden;         /* 整頁不捲動 */
   box-sizing: border-box;
 }
-.header, body > hr, .page-heading, .footer { flex: none; }
+.header, body > hr, .footer { flex: none; }
 
+/* 舞台：header 下方剩下的空間 */
 .stage {
   flex: 1;
   min-height: 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  container-type: size;
+  container-type: size;     /* 讓窗戶知道剩下多少寬高 */
 }
 
+/* 正方形的孔：取剩餘寬、高中較小的那個 */
 .window {
+  /* 寬 = 高 × 1.62（黃金比例的橫長方形），整個框塞進剩餘空間 */
   width: min(100cqw, calc(100cqh * 1.62));
   height: min(100cqh, calc(100cqw / 1.62));
   box-sizing: border-box;
@@ -120,7 +122,7 @@ body {
   box-shadow: inset 3px 3px 6px rgba(0, 0, 40, 0.45);
   background: #5a71cf;
   padding: 0 12px;
-  scrollbar-color: #ffff33 #5f77d6;
+  scrollbar-color: #ffff33 #5f77d6;   /* 黃色捲軸 */
 }
 .window .box { margin: 16px auto; }
 
@@ -162,31 +164,27 @@ body {
   pointer-events: none;
 }
 
-/* ===== 文章頁：左中文、右英文 ===== */
+/* ===== 文章頁：一列一列排，中英左右對齊 ===== */
 .post-box { max-width: none; }          /* 文章卡片放寬，給兩欄空間 */
-.two-col {
+.row.pair {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0 28px;
 }
-.two-col .col-en {
+.row.pair .col-en {
   border-left: 1px dashed #ffffff;      /* 中間的分隔虛線 */
   padding-left: 28px;
 }
+/* .row.full：橫跨兩欄（共用圖片會自動置中） */
+.row.full img { max-width: 100%; width: auto; }
 .lang-toggle { display: none; }         /* 電腦版不顯示切換按鈕 */
-
-/* 電腦版：英文欄的圖片隱藏，避免和中文欄重複（手機版會再顯示） */
-.two-col .col-en img:not(.keep),
-.two-col .col-en p:has(> img:only-child:not(.keep)) { display: none; }
 
 /* 手機：單欄＋切換按鈕 */
 @media (max-width: 700px) {
-  .two-col { display: block; }
-  .two-col .col-en { border-left: 0; padding-left: 0; }
-  .two-col .col-en img:not(.keep) { display: block; }
-  .two-col .col-en p:has(> img:only-child:not(.keep)) { display: block; }
-  .two-col[data-show="zh"] .col-en,
-  .two-col[data-show="en"] .col-zh { display: none; }
+  .row.pair { display: block; }
+  .row.pair .col-en { border-left: 0; padding-left: 0; }
+  .bilingual[data-show="zh"] .col-en,
+  .bilingual[data-show="en"] .col-zh { display: none; }
 
   .lang-toggle {
     display: flex;
