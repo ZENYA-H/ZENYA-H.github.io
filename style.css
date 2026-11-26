@@ -34,7 +34,7 @@ hr { border: 0; border-top: 1px solid #333366; border-bottom: 1px solid #8fa0e8;
   padding: 6px 12px;
   font-size: 14px;
   max-width: 360px;
-  text-align: left;
+  text-align: center;
 }
 .site-title,
 .site-title:visited {
