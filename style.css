@@ -214,7 +214,7 @@ body {
 .article img {
   box-sizing: border-box;
   height: auto;
-  border: 4px solid;
+  border: 6px solid;
   border-color: #2c3c8c #b8c4ff #b8c4ff #2c3c8c; /* 和滾動框一樣：左上暗、右下亮 */
 }
 @media (min-width: 701px) {
