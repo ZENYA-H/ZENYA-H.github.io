@@ -110,8 +110,8 @@ body {
 }
 
 .window {
-  width: min(100cqw, 100cqh);
-  height: min(100cqw, 100cqh);
+  width: min(100cqw, calc(100cqh * 1.62));
+  height: min(100cqh, calc(100cqw / 1.62));
   box-sizing: border-box;
   overflow-y: auto;
   /* 凹陷 bevel：左上暗、右下亮 */
