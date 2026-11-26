@@ -113,8 +113,8 @@ body {
 /* 正方形的孔：取剩餘寬、高中較小的那個 */
 .window {
   /* 寬 = 高 × 1.62（黃金比例的橫長方形），整個框塞進剩餘空間 */
-  width: min(100cqw, calc(100cqh * 1.62));
-  height: min(100cqh, calc(100cqw / 1.62));
+  width: min(100cqw, calc(100cqh));
+  height: min(100cqh, calc(100cqw));
   box-sizing: border-box;
   overflow-y: auto;
   /* 凹陷 bevel：左上暗、右下亮 */
