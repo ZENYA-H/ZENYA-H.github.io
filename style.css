@@ -282,13 +282,12 @@ table.archive td {
   color: #ffff33;
   letter-spacing: 0.2em;
 }
-.a-pic { width: 26%; position: relative; }
+.a-pic { width: 26%; position: relative; height: 120px; }
 /* 圖片縮放在格子裡，高度依height變化 */
 .a-pic a {
   position: absolute;
   inset: 8px;
   display: flex;
-  height: 120px;
   align-items: center;
   justify-content: center;
 }
