@@ -13,13 +13,13 @@ permalink: /archive/
 {% for post in posts %}
   {% assign y = post.date | date: "%Y" %}
   {% assign m = post.date | date: "%m" %}
-  {% assign group = forloop.index0 | modulo: 6 %}
+  {% assign group = forloop.index0 | modulo: 1 %}
   <tr>
     <td class="a-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></td>
     <td class="a-date">{% if y != prev_year %}{{ y }}・{{ m }}{% else %}{{ m }}{% endif %}</td>
     {% if group == 0 %}
       {% assign span = forloop.rindex %}
-      {% if span > 6 %}{% assign span = 6 %}{% endif %}
+      {% if span > 6 %}{% assign span = 1 %}{% endif %}
       <td class="a-pic" rowspan="{{ span }}">
         {% if post.cover %}<a href="{{ post.url | relative_url }}"><img src="{{ post.cover | relative_url }}" alt="{{ post.title }}"></a>{% endif %}
       </td>
