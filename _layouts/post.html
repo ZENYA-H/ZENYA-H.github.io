@@ -2,22 +2,26 @@
 layout: default
 ---
 {% comment %}
-  內文結構：
-  - 用 <!-- row --> 把文章切成好幾「列」。
-  - 有 <!-- English --> 的列 → 左中文、右英文。
-  - 沒有 <!-- English --> 的列 → 橫跨兩欄（放中英共用的圖片）。
+  文章內頁。
+  內文用兩個標記切開：
+    <!-- row -->      分隔每一「列」
+    <!-- English -->  在同一列裡分隔中文（左欄）和英文（右欄）
+  沒有 <!-- English --> 的列會橫跨兩欄，用來放中英共用的圖片。
+  整篇都沒有 <!-- English --> 的話，就是一般的單欄文章，也不會出現語言切換按鈕。
 {% endcomment %}
+
 {% assign bilingual = false %}
 {% if content contains "<!-- English -->" %}{% assign bilingual = true %}{% endif %}
 {% assign rows = content | split: "<!-- row -->" %}
 
+{% comment %} ---------- 語言切換按鈕（CSS 設定只在手機版顯示） ---------- {% endcomment %}
 {% if bilingual %}
-<!-- 手機版才會顯示的語言切換按鈕 -->
 <div class="lang-toggle" role="group" aria-label="語言 Language">
-  <button type="button" data-lang="zh" class="active">中文</button><button type="button" data-lang="en">English</button>
+  <button type="button" class="btn active" data-lang="zh">中文</button><button type="button" class="btn" data-lang="en">English</button>
 </div>
 {% endif %}
 
+{% comment %} ---------- 文章卡片：標題、日期作者、內文 ---------- {% endcomment %}
 <div class="box post-box">
   <h1 class="yellow">{{ page.title }}</h1>
   <p class="meta">{{ page.date | date: "%Y年%-m月%-d日" }} ／ {{ page.author }}</p>
@@ -25,12 +29,14 @@ layout: default
   <div class="article bilingual" data-show="zh">
   {% for row in rows %}
     {% if row contains "<!-- English -->" %}
+      {% comment %} 中英對照列：左中文、右英文 {% endcomment %}
       {% assign parts = row | split: "<!-- English -->" %}
       <div class="row pair">
         <div class="col col-zh" lang="zh-Hant">{{ parts[0] }}</div>
         <div class="col col-en" lang="en">{{ parts[1] }}</div>
       </div>
     {% else %}
+      {% comment %} 橫跨兩欄的列（空白的列略過） {% endcomment %}
       {% assign check = row | strip %}
       {% if check != "" %}
       <div class="row full">{{ row }}</div>
@@ -40,6 +46,7 @@ layout: default
   </div>
 </div>
 
+{% comment %} ---------- 上一篇／回首頁／下一篇 ---------- {% endcomment %}
 <p class="center">
   {% if page.previous %}<a href="{{ page.previous.url | relative_url }}">← {{ page.previous.title }}</a>{% endif %}
   &nbsp;&nbsp;
@@ -48,20 +55,29 @@ layout: default
   {% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>{% endif %}
 </p>
 
+{% comment %} ---------- 語言切換：點按鈕換語言，並記住讀者的選擇 ---------- {% endcomment %}
 {% if bilingual %}
 <script>
 (function () {
   var article = document.querySelector('.bilingual');
-  var buttons = document.querySelectorAll('.lang-toggle button');
+  var buttons = document.querySelectorAll('.lang-toggle .btn');
+
   function show(lang) {
     article.setAttribute('data-show', lang);
-    buttons.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-lang') === lang); });
+    buttons.forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+    });
     try { localStorage.setItem('lang', lang); } catch (e) {}
   }
+
   buttons.forEach(function (b) {
     b.addEventListener('click', function () { show(b.getAttribute('data-lang')); });
   });
-  try { var saved = localStorage.getItem('lang'); if (saved) show(saved); } catch (e) {}
+
+  try {
+    var saved = localStorage.getItem('lang');
+    if (saved) show(saved);
+  } catch (e) {}
 })();
 </script>
 {% endif %}

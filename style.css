@@ -1,228 +1,332 @@
-/* Marmit 風格：藍底、黃標題、粉紅強調、雙框線 */
+/* =====================================================================
+   World Catalog* — 網站樣式
+   風格：Marmit 式老網站（藍底、黃標題、粉紅強調、立體框線）
+
+   目錄
+     1. 色彩與框線設定（改顏色從這裡改）
+     2. 基本設定：字型、連結、常用小工具
+     3. 版面骨架：固定頁面＋滾動框
+     4. 頁首：網站標題＋ABOUT 框
+     5. 共用元件：立體雙框卡片、凸起按鈕
+     6. 首頁：最新文章列表
+     7. 文章頁：中英對照與圖片
+     8. 文章列表頁（Archive）
+     9. 頁尾＋TOP 按鈕
+
+   手機版斷點：寬度 700px 以下。
+   各區的手機版設定寫在該區最後面；要改斷點，
+   請把檔案裡所有的 700px 和 701px 一起改。
+   ===================================================================== */
+
+
+/* =====================================================================
+   1. 色彩與框線設定
+   ===================================================================== */
+:root {
+  /* 底色 */
+  --bg:             #5f77d6;   /* 頁面底色 */
+  --bg-window:      #5a71cf;   /* 滾動框內的底色（稍暗） */
+  --bg-pressed:     #5268c4;   /* 按下去的按鈕底色 */
+
+  /* 文字色 */
+  --text:           #ffffff;
+  --yellow:         #ffff33;   /* 標題、日期 */
+  --yellow-light:   #ffff99;   /* 網站標題滑鼠移上去 */
+  --pink:           #ff88ff;   /* 強調文字、作者日期 */
+  --visited:        #e8e0ff;   /* 點過的連結 */
+
+  /* 立體框線（四個顏色依序是：上 右 下 左） */
+  --raised:  #ffffff #ababab #ababab #ffffff;   /* 凸起：左上亮、右下暗 */
+  --pressed: #ababab #ffffff #ffffff #ababab;   /* 凹下（淺色版）：卡片內框、表格格子、按下的按鈕 */
+  --sunken:  #2c3c8c #b8c4ff #b8c4ff #2c3c8c;   /* 凹下（深色版）：滾動框、所有圖片 */
+}
+
+
+/* =====================================================================
+   2. 基本設定
+   ===================================================================== */
 body {
-  background: #5f77d6;
-  color: #ffffff;
+  margin: 0;
+  padding: 12px 12px 30px;
+  background: var(--bg);
+  color: var(--text);
   font-family: "Times New Roman", "PMingLiU", "MS Mincho", "Noto Serif TC", serif;
   font-size: 17px;
   line-height: 1.7;
-  margin: 0;
-  padding: 12px 12px 30px;
 }
 
-a { color: #ffffff; }
-a:visited { color: #e8e0ff; }
-a:hover { color: #ffff33; }
+/* 連結 */
+a         { color: var(--text); }
+a:visited { color: var(--visited); }
+a:hover   { color: var(--yellow); }
 
-hr { border: 0; border-top: 1px solid #333366; border-bottom: 1px solid #8fa0e8; margin: 20px 0; }
+/* 分隔線（雙色細線） */
+hr {
+  border: 0;
+  border-top: 1px solid #333366;
+  border-bottom: 1px solid #8fa0e8;
+  margin: 20px 0;
+}
 
-.yellow { color: #ffff33; }
-.pink   { color: #ff88ff; }
+/* 常用小工具：直接加在 HTML 的 class 上 */
+.yellow { color: var(--yellow); }
+.pink   { color: var(--pink); }
 .small  { font-size: 14px; }
 .center { text-align: center; }
 
-/* 頁首 Header */
-.header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;          /* 手機上 about 框會自動換到標題下方 */
-  gap: 16px 40px;
-  padding-top: 10px;
-}
-.header-title { text-align: center; }
-.infobox {
-  padding: 6px 12px;
-  font-size: 14px;
-  max-width: 360px;
-  text-align: center;
-}
-.site-title,
-.site-title:visited {
-  color: #ffff33;
-  font-style: italic;
-  font-weight: 300;
-  font-size: 60px;          /* 「最新文章」的 1.5 倍 */
-  line-height: 1.15;
-  text-decoration: none;
-}
-.site-title:hover { color: #ffff99; }
-.site-tagline { color: #ffffff; font-size: 16px; margin: 4px 0 0; }
 
-/* 標題 */
-.section-title {
-  text-align: center;
-  color: #ffff33;
-  font-weight: 300;
-  font-size: 35px;
-  margin: 10px 0 0;
-}
-
-/* 雙框卡片 Box */
-.box {
-  max-width: 680px;
-  margin: 24px auto;
-  padding: 10px 24px 16px;
-  text-align: center;
-}
-.box h1, .box h2 { margin: 8px 0; font-size: 24px; }
-.post-title { font-size: 20px; margin: 6px 0; }
-.post-title a { text-decoration: none; }
-.meta { font-size: 14px; color: #ff88ff; margin-top: 0; }
-
-.thumb {
-  width: 300px;
-  max-width: 100%;
-  background: #fff;
-  border: 0;
-  display: block;
-  margin: 10px auto 4px;
-}
-.cover { max-width: 100%; width: 420px; background: #fff; }
-
-/* 文章內文：靠左 */
-.article { text-align: left; }
-.article img { max-width: 100%; display: block; margin: 12px auto; }
-.article h2, .article h3 { color: #ffff33; }
-.article hr { border-top: 1px dashed #ffffff; border-bottom: 0; }
-.article blockquote { border-left: 3px solid #ff88ff; margin-left: 0; padding-left: 12px; }
-
-.footer { text-align: center; font-size: 13px; margin: 10px 0 0; }
-
-/* ===== 固定頁面＋正方形捲動窗 ===== */
+/* =====================================================================
+   3. 版面骨架：固定頁面＋滾動框
+   電腦版：整頁固定不動，只有中間的滾動框（.window）可以捲動。
+     頁首 → 分隔線 → 舞台（.stage，放滾動框）→ 頁尾
+   手機版：取消固定，整頁正常往下捲。
+   ===================================================================== */
 html, body { height: 100%; }
 body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  height: 100dvh;           /* 手機瀏覽器網址列也算進去 */
-  overflow: hidden;         /* 整頁不捲動 */
+  height: 100dvh;            /* 手機瀏覽器網址列也算進去 */
+  overflow: hidden;          /* 整頁不捲動 */
   box-sizing: border-box;
 }
-.header, body > hr, .footer { flex: none; }
+.header, .divider, .footer { flex: none; }   /* 這三塊維持原本高度 */
 
-/* 舞台：header 下方剩下的空間 */
+/* 舞台：頁首和頁尾之間剩下的空間 */
 .stage {
   flex: 1;
   min-height: 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  container-type: size;     /* 讓窗戶知道剩下多少寬高 */
+  container-type: size;      /* 讓滾動框知道剩下多少寬、高 */
 }
 
-/* 正方形的孔：取剩餘寬、高中較小的那個 */
+/* 滾動框 */
 .window {
-  /* 寬 = 高 × 1.62（黃金比例的橫長方形），整個框塞進剩餘空間 */
-  width: min(100cqw, calc(100cqh * 1.62));
-  height: min(100cqh, calc(100cqw));
+  /* 尺寸：
+     寬 = 剩餘寬度，但最多是剩餘高度的 1.62 倍
+     高 = 剩餘高度，但不超過剩餘寬度 */
+  width:  min(100cqw, calc(100cqh * 1.62));
+  height: min(100cqh, 100cqw);
   box-sizing: border-box;
-  overflow-y: auto;
-  /* 凹陷 bevel：左上暗、右下亮 */
-  border: 4px solid;
-  border-color: #2c3c8c #b8c4ff #b8c4ff #2c3c8c;
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 40, 0.35);
-  background: #5a71cf;
   padding: 0 12px;
-  scrollbar-color: #ffff33 #5f77d6;   /* 黃色捲軸 */
-}
-.window .box { margin: 16px auto; }
+  overflow-y: auto;
+  container-type: inline-size;              /* 讓框內圖片能以框寬計算大小 */
 
-/* 手機（寬度 700px 以下）：取消固定，整頁正常捲動 */
+  /* 外觀：凹陷框＋淡淡的內陰影 */
+  background: var(--bg-window);
+  border: 4px solid;
+  border-color: var(--sunken);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 40, 0.35);
+  scrollbar-color: var(--yellow) var(--bg);  /* 黃色捲軸（Safari 不支援） */
+}
+
+/* 手機版 */
 @media (max-width: 700px) {
-  body { display: block; height: auto; overflow: visible; }
-  .stage { display: block; container-type: normal; }
+  body    { display: block; height: auto; overflow: visible; }
+  .stage  { display: block; container-type: normal; }
   .window {
     width: auto;
     height: auto;
+    padding: 0;
     overflow: visible;
+    background: none;
     border: 0;
     box-shadow: none;
-    background: none;
-    padding: 0;
   }
 }
 
-/* 手機上主標題不換行：字級跟著螢幕寬度縮放 */
+
+/* =====================================================================
+   4. 頁首：網站標題＋ABOUT 框
+   文字內容在 _config.yml（title、tagline、description），
+   ABOUT 框的標題和粉紅那行在 _layouts/default.html。
+   ===================================================================== */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;           /* 寬度不夠時 ABOUT 框自動換到標題下方 */
+  gap: 16px 40px;
+  padding-top: 10px;
+}
+.header-title { text-align: center; }
+
+/* 網站標題 */
+.site-title,
+.site-title:visited {
+  color: var(--yellow);
+  font-size: 60px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.15;
+  text-decoration: none;
+}
+.site-title:hover { color: var(--yellow-light); }
+
+/* 副標題 */
+.site-tagline {
+  margin: 4px 0 0;
+  color: var(--text);
+  font-size: 16px;
+}
+
+/* ABOUT 框（框線樣式在第 5 區「立體雙框」） */
+.infobox {
+  max-width: 360px;
+  padding: 6px 12px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* 手機版：標題不換行，字級跟著螢幕寬度縮放 */
 @media (max-width: 700px) {
   .site-title {
     white-space: nowrap;
-    font-size: clamp(24px, 13vw, 60px);
+    font-size: clamp(24px, 13vw, 60px);   /* 最小 24px、最大 60px；標題變長就把 13vw 調小 */
   }
 }
 
-/* ===== Marmit 立體雙框：外框凸起、內框凹陷（老式 HTML 表格框） ===== */
-.box, .infobox {
+
+/* =====================================================================
+   5. 共用元件
+   ===================================================================== */
+
+/* ---- 立體雙框：外框凸起＋內框凹下（老式 HTML 表格框）----
+   用在：首頁文章卡片、文章頁內容卡片（.box）、ABOUT 框（.infobox） */
+.box,
+.infobox {
   position: relative;
   border: 2px solid;
-  border-color: #ffffff #ababab #ababab #ffffff;   /* 上 右 下 左：左上亮、右下暗 */
+  border-color: var(--raised);
 }
-.box::before, .infobox::before {
+.box::before,
+.infobox::before {
   content: "";
   position: absolute;
-  inset: 2px;                                       /* 內外框之間的空隙 */
+  inset: 2px;                /* 內外框之間的空隙 */
   border: 1px solid;
-  border-color: #ababab #ffffff #ffffff #ababab;   /* 反過來：左上暗、右下亮 */
+  border-color: var(--pressed);
   pointer-events: none;
 }
 
-/* ===== 文章頁：一列一列排，中英左右對齊 ===== */
-.post-box { max-width: none; }          /* 文章卡片放寬，給兩欄空間 */
+/* 卡片的內容排版 */
+.box {
+  max-width: 680px;
+  margin: 16px auto;
+  padding: 10px 24px 16px;
+  text-align: center;
+}
+.box h1,
+.box h2 {
+  margin: 8px 0;
+  font-size: 24px;
+}
+
+/* ---- 凸起按鈕（.btn）----
+   用在：TOP、文章列表 Archive、手機版的中文／English 切換 */
+.btn {
+  display: inline-block;
+  padding: 2px 14px;
+  text-decoration: none;
+  border: 2px solid;
+  border-color: var(--raised);
+}
+.btn:active { border-color: var(--pressed); }   /* 按下去時凹下 */
+
+
+/* =====================================================================
+   6. 首頁：最新文章列表（index.html）
+   ===================================================================== */
+
+/* 頁面大標題（「☆ 最新文章 ☆」「■文章列表■」） */
+.section-title {
+  margin: 10px 0 0;
+  color: var(--yellow);
+  font-size: 35px;
+  font-weight: 300;
+  text-align: center;
+}
+
+/* 卡片裡的封面圖 */
+.thumb {
+  display: block;
+  box-sizing: border-box;
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+  margin: 10px auto 4px;
+  background: #fff;
+  border: 4px solid;
+  border-color: var(--sunken);
+}
+
+/* 卡片裡的文章標題 */
+.post-title   { margin: 6px 0; font-size: 20px; }
+.post-title a { text-decoration: none; }
+
+
+/* =====================================================================
+   7. 文章頁（_layouts/post.html）
+   內文結構：
+     <!-- row -->      分隔每一「列」
+     <!-- English -->  在同一列裡分隔中文（左）和英文（右）
+     沒有 English 的列 → 橫跨兩欄，用來放中英共用的圖片
+   ===================================================================== */
+
+/* 文章卡片放寬到整個滾動框，給兩欄空間 */
+.post-box { max-width: none; }
+
+/* 標題下方的日期／作者 */
+.meta {
+  margin-top: 0;
+  color: var(--pink);
+  font-size: 14px;
+}
+
+/* ---- 內文排版 ---- */
+.article { text-align: left; }
+.article h2,
+.article h3 { color: var(--yellow); }
+.article hr {
+  border-top: 1px dashed var(--text);
+  border-bottom: 0;
+}
+.article blockquote {
+  margin-left: 0;
+  padding-left: 12px;
+  border-left: 3px solid var(--pink);
+}
+
+/* ---- 中英對照列 ---- */
 .row.pair {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0 28px;
 }
 .row.pair .col-en {
-  border-left: 1px dashed #ffffff;      /* 中間的分隔虛線 */
   padding-left: 28px;
-}
-/* .row.full：橫跨兩欄（共用圖片會自動置中） */
-.row.full img { max-width: 100%; width: auto; }
-.lang-toggle { display: none; }         /* 電腦版不顯示切換按鈕 */
-
-/* 手機：單欄＋切換按鈕 */
-@media (max-width: 700px) {
-  .row.pair { display: block; }
-  .row.pair .col-en { border-left: 0; padding-left: 0; }
-  .bilingual[data-show="zh"] .col-en,
-  .bilingual[data-show="en"] .col-zh { display: none; }
-
-  .lang-toggle {
-    display: flex;
-    justify-content: center;
-    margin: 4px 0 0;
-  }
-  .lang-toggle button {
-    font: inherit;
-    font-size: 15px;
-    color: #ffffff;
-    background: #5f77d6;
-    padding: 4px 18px;
-    cursor: pointer;
-    border: 2px solid;
-    border-color: #ffffff #ababab #ababab #ffffff;   /* 凸起 */
-  }
-  .lang-toggle button.active {
-    color: #ffff33;
-    background: #5268c4;
-    border-color: #ababab #ffffff #ffffff #ababab;   /* 按下去：凹陷 */
-  }
+  border-left: 1px dashed var(--text);   /* 中間的分隔虛線 */
 }
 
-/* ===== 內文圖片：凹陷 bevel 邊框，網頁版最寬為滾動框的 1/3 ===== */
-.window { container-type: inline-size; }        /* 讓圖片能以滾動框寬度計算 */
+/* ---- 內文圖片 ----
+   電腦版最寬為滾動框的 1/3（原圖比較小就照原尺寸）；手機版滿版 */
 .article img {
+  display: block;
   box-sizing: border-box;
+  max-width: 100%;
   height: auto;
+  margin: 12px auto;
   border: 4px solid;
-  border-color: #2c3c8c #b8c4ff #b8c4ff #2c3c8c; /* 和滾動框一樣：左上暗、右下亮 */
+  border-color: var(--sunken);
 }
 @media (min-width: 701px) {
-  .article img,
-  .row.full img { max-width: min(100%, 33.333cqw); }
+  .article img { max-width: min(100%, 33.333cqw); }
 }
 
-/* ===== 多張圖並排：同一段裡連續的圖片，網頁版橫排（每排最多三張），手機版直排 ===== */
+/* ---- 同一段裡連續好幾張圖：電腦版橫排（一排最多三張），手機版直排 ----
+   寫法：圖片一行一張，中間不要空行 */
 @media (min-width: 701px) {
   .row.full p:has(> img + img) {
     display: flex;
@@ -232,33 +336,47 @@ body {
     gap: 16px;
   }
   .row.full p:has(> img + img) > img {
-    margin: 0;
     min-width: 0;
-    max-width: calc((100% - 32px) / 3);   /* 一排最多三張 */
+    max-width: calc((100% - 32px) / 3);   /* 32px = 兩個 16px 間距 */
+    margin: 0;
   }
 }
 
-/* ===== 首頁封面圖：和內文圖一樣的凹陷 bevel ===== */
-.thumb {
-  box-sizing: border-box;
-  height: auto;
-  border: 4px solid;
-  border-color: #2c3c8c #b8c4ff #b8c4ff #2c3c8c;
+/* ---- 中文／English 切換按鈕（只在手機版出現） ---- */
+.lang-toggle { display: none; }
+
+@media (max-width: 700px) {
+  /* 改成單欄，只顯示選到的語言 */
+  .row.pair { display: block; }
+  .row.pair .col-en { padding-left: 0; border-left: 0; }
+  .bilingual[data-show="zh"] .col-en,
+  .bilingual[data-show="en"] .col-zh { display: none; }
+
+  .lang-toggle {
+    display: flex;
+    justify-content: center;
+    margin: 4px 0 0;
+  }
+  .lang-toggle .btn {
+    padding: 4px 18px;
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  .lang-toggle .btn.active {           /* 目前選到的語言：凹下、黃字 */
+    background: var(--bg-pressed);
+    color: var(--yellow);
+    border-color: var(--pressed);
+  }
 }
 
-/* ===== 滾動框底部的 TOP 按鈕 ===== */
-.to-top { text-align: center; margin: 8px 0 16px; }
-.to-top a {
-  display: inline-block;
-  padding: 2px 14px;
-  font-size: 14px;
-  text-decoration: none;
-  border: 2px solid;
-  border-color: #ffffff #ababab #ababab #ffffff;   /* 凸起的小按鈕 */
-}
-.to-top a:active { border-color: #ababab #ffffff #ffffff #ababab; }
 
-/* ===== 文章列表頁：老式表格，沿用凸起外框＋凹陷格線 ===== */
+/* =====================================================================
+   8. 文章列表頁（archive.html）
+   三欄老式表格：標題｜年月｜封面圖
+   ===================================================================== */
 table.archive {
   width: 100%;
   max-width: 900px;
@@ -266,55 +384,74 @@ table.archive {
   border-collapse: separate;
   border-spacing: 3px;
   border: 2px solid;
-  border-color: #ffffff #ababab #ababab #ffffff;   /* 外框凸起 */
+  border-color: var(--raised);       /* 整個表格凸起 */
 }
 table.archive td {
-  border: 1px solid;
-  border-color: #ababab #ffffff #ffffff #ababab;   /* 每格凹陷 */
   padding: 4px 10px;
   vertical-align: middle;
+  border: 1px solid;
+  border-color: var(--pressed);      /* 每一格凹下 */
 }
+
+/* 標題欄 */
 .a-title a { font-weight: bold; }
+
+/* 年月欄 */
 .a-date {
   width: 9em;
+  color: var(--yellow);
+  letter-spacing: 0.2em;
   text-align: right;
   white-space: nowrap;
-  color: #ffff33;
-  letter-spacing: 0.2em;
 }
-.a-pic { width: 26%; position: relative; height: 120px; }
-/* 圖片縮放在格子裡，高度依height變化 */
+
+/* 封面圖欄：圖片縮放在格子裡，不會把列撐高 */
+.a-pic {
+  position: relative;
+  width: 26%;
+  height: 120px;                     /* 每列的高度 */
+}
 .a-pic a {
   position: absolute;
-  inset: 8px;
+  inset: 8px;                        /* 圖片和格子邊緣的距離 */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .a-pic img {
   display: block;
-  max-width: 100%;
-  max-height: 100%;
+  box-sizing: border-box;
   width: auto;
   height: auto;
-  box-sizing: border-box;
+  max-width: 100%;
+  max-height: 100%;
   border: 4px solid;
-  border-color: #2c3c8c #b8c4ff #b8c4ff #2c3c8c;   /* 和其他圖片一樣的凹陷 */
+  border-color: var(--sunken);
 }
 
-/* 手機：拿掉圖片欄，只留標題和日期 */
+/* 手機版：拿掉圖片欄，只留標題和日期 */
 @media (max-width: 700px) {
-  .a-pic { display: none; }
+  .a-pic  { display: none; }
   .a-date { width: auto; letter-spacing: 0; }
 }
 
-.footer a {
-  display: inline-block;
-  padding: 2px 14px;
-  color: #ff88ff;
-  text-decoration: none;
-  border: 2px solid;
-  border-color: #ffffff #ababab #ababab #ffffff;   /* 凸起 */
+
+/* =====================================================================
+   9. 頁尾＋TOP 按鈕
+   ===================================================================== */
+
+/* 滾動框最下面的 TOP（按鈕外觀在第 5 區 .btn） */
+.to-top   { margin: 8px 0 16px; text-align: center; }
+.to-top a { font-size: 14px; }
+
+/* 滾動框外的版權列 */
+.footer {
+  margin: 10px 0 0;
+  font-size: 13px;
+  text-align: center;
 }
-.footer a:hover { color: #ffff33; }
-.footer a:active { border-color: #ababab #ffffff #ffffff #ababab; }  /* 按下去：凹陷 */
+
+/* 版權列裡的「文章列表 Archive」按鈕：粉紅字 */
+.footer .btn,
+.footer .btn:visited { color: var(--pink); }
+.footer .btn:hover   { color: var(--yellow); }

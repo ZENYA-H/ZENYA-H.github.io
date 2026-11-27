@@ -1,15 +1,24 @@
 ---
 layout: default
 ---
+{% comment %}
+  首頁：由新到舊列出所有文章，每篇一張卡片（日期、封面圖、標題、英文摘要、作者）。
+  卡片內容來自每篇文章最上面的 title、author、cover、excerpt_en。
+{% endcomment %}
+
 <h1 class="section-title">☆ 最新文章 ☆</h1>
 <p class="center yellow small">Latest posts &nbsp;/&nbsp; 中文・English</p>
 
 {% for post in site.posts %}
 <div class="box">
   <h2 class="yellow">{{ post.date | date: "%Y年%-m月%-d日" }}</h2>
+
+  {% if post.cover %}
   <a href="{{ post.url | relative_url }}">
     <img src="{{ post.cover | relative_url }}" alt="{{ post.title }}" class="thumb">
   </a>
+  {% endif %}
+
   <p class="post-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></p>
   {% if post.excerpt_en %}<p class="pink">{{ post.excerpt_en }}</p>{% endif %}
   <p class="small">文 / by {{ post.author }}</p>

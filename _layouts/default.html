@@ -1,16 +1,25 @@
 <!DOCTYPE html>
+<!--
+  共用外框：所有頁面都套用這個版型。
+  結構：頁首（標題＋ABOUT）→ 分隔線 → 滾動框（各頁內容 + TOP）→ 頁尾
+-->
 <html lang="{{ site.lang }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+
+<!-- 字型：思源宋體（電腦沒有內建明體時使用，手機主要靠它） -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;700&display=swap" rel="stylesheet">
+
+<!-- 樣式表：網址後面加上建置時間，每次更新都會強制讀到新版 -->
 <link rel="stylesheet" href="{{ '/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 </head>
 <body>
 
+<!-- ========== 頁首：網站標題＋ABOUT 框 ========== -->
 <div class="header">
   <div class="header-title">
     <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
@@ -23,16 +32,23 @@
   </div>
 </div>
 
-<hr>
+<hr class="divider">
+
+<!-- ========== 滾動框：各頁內容放在這裡 ========== -->
 <div class="stage">
   <div class="window">
     <span id="top"></span>
     {{ content }}
-    <p class="to-top"><a href="#top">▲ TOP</a></p>
+    <p class="to-top"><a href="#top" class="btn">▲ TOP</a></p>
   </div>
 </div>
 
-<p class="footer">(C) {{ site.time | date: "%Y" }} {{ site.title }} &nbsp;|&nbsp; <a href="{{ '/archive/' | relative_url }}">文章列表 Archive</a></p>
+<!-- ========== 頁尾：版權＋文章列表按鈕 ========== -->
+<p class="footer">
+  (C) {{ site.time | date: "%Y" }} {{ site.title }}
+  &nbsp;|&nbsp;
+  <a href="{{ '/archive/' | relative_url }}" class="btn">文章列表 Archive</a>
+</p>
 
 </body>
 </html>

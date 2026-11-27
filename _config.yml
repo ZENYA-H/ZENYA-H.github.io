@@ -1,12 +1,19 @@
+# ============================================================
 # 網站基本設定 / Site settings
-title: "World Catalog*"
-tagline: "☆ Quality ★ Dairy ✪ Products ✰✰✰"
-description: "Cataloging the world since 2027."
+# 改完存檔後，網站重新建置約需 1 分鐘
+# ============================================================
+
+# ---- 頁首文字 ----
+title: "World Catalog*"                          # 網站標題（黃色大字）
+tagline: "☆ Quality ★ Dairy ✪ Products ✰✰✰"      # 標題下方的白色副標題
+description: "Cataloging the world since 2027."  # ABOUT 框裡的白字
 lang: zh-Hant
 
+# ---- 網址 ----
 # 如果網址是 https://帳號.github.io/repo名稱/ ，把 baseurl 改成 "/repo名稱"
 # If your site lives at https://USER.github.io/REPO/ set baseurl to "/REPO"
 baseurl: ""
+permalink: /posts/:year/:month/:day/:title/      # 文章網址的格式
 
-permalink: /posts/:year/:month/:day/:title/
+# ---- 不用動 ----
 markdown: kramdown
