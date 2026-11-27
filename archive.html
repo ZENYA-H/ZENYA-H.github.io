@@ -19,7 +19,7 @@ permalink: /archive/
     <td class="a-date">{% if y != prev_year %}{{ y }}・{{ m }}{% else %}{{ m }}{% endif %}</td>
     {% if group == 0 %}
       {% assign span = forloop.rindex %}
-      {% if span > 6 %}{% assign span = 1 %}{% endif %}
+      {% if span > 1 %}{% assign span = 1 %}{% endif %}
       <td class="a-pic" rowspan="{{ span }}">
         {% if post.cover %}<a href="{{ post.url | relative_url }}"><img src="{{ post.cover | relative_url }}" alt="{{ post.title }}"></a>{% endif %}
       </td>
