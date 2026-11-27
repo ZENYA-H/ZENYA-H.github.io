@@ -26,11 +26,13 @@
 <hr>
 <div class="stage">
   <div class="window">
+    <span id="top"></span>
     {{ content }}
+    <p class="to-top"><a href="#top">▲ TOP</a></p>
   </div>
 </div>
 
-<p class="footer">(C) {{ site.time | date: "%Y" }} {{ site.title }} &nbsp;|&nbsp; <a href="{{ '/' | relative_url }}">TOP</a></p>
+<p class="footer">(C) {{ site.time | date: "%Y" }} {{ site.title }} &nbsp;|&nbsp; <a href="{{ '/archive/' | relative_url }}">文章列表 Archive</a></p>
 
 </body>
 </html>
