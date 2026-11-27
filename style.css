@@ -56,9 +56,9 @@ body {
 }
 
 /* 連結 */
-a         { color: var(--text); }
-a:visited { color: var(--visited); }
-a:hover   { color: var(--yellow); }
+a         { color: var(--yellow); }
+a:visited { color: var(--yellow); }
+a:hover   { color: var(--text); }
 
 /* 分隔線（雙色細線） */
 hr {
@@ -119,7 +119,7 @@ body {
   border: 4px solid;
   border-color: var(--sunken);
   box-shadow: inset 2px 2px 4px rgba(0, 0, 40, 0.35);
-  scrollbar-color: var(--yellow) var(--bg);  /* 黃色捲軸（Safari 不支援） */
+  scrollbar-color: var(--text) var(--bg);  /* 捲軸顏色（Safari 不支援） */
 }
 
 /* 手機版 */
