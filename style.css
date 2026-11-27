@@ -50,7 +50,7 @@ body {
   padding: 12px 12px 30px;
   background: var(--bg);
   color: var(--text);
-  font-family: "Times New Roman", "PMingLiU", "MS Mincho", "Noto Serif TC", serif;
+  font-family: "Times New Roman", "PMingLiU", "Noto Serif TC", "MS Mincho", serif;
   font-size: 17px;
   line-height: 1.7;
 }
@@ -263,7 +263,7 @@ body {
 }
 
 /* 卡片裡的文章標題 */
-.post-title   { margin: 6px 0; font-size: 20px; }
+.post-title   { margin: 6px 0; font-size: 20px; font-weight: 300; }
 .post-title a { text-decoration: none; }
 
 
