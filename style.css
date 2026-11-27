@@ -245,3 +245,65 @@ body {
   border: 4px solid;
   border-color: #2c3c8c #b8c4ff #b8c4ff #2c3c8c;
 }
+
+/* ===== 滾動框底部的 TOP 按鈕 ===== */
+.to-top { text-align: center; margin: 8px 0 16px; }
+.to-top a {
+  display: inline-block;
+  padding: 2px 14px;
+  font-size: 14px;
+  text-decoration: none;
+  border: 2px solid;
+  border-color: #ffffff #ababab #ababab #ffffff;   /* 凸起的小按鈕 */
+}
+.to-top a:active { border-color: #ababab #ffffff #ffffff #ababab; }
+
+/* ===== 文章列表頁：老式表格，沿用凸起外框＋凹陷格線 ===== */
+table.archive {
+  width: 100%;
+  max-width: 900px;
+  margin: 16px auto;
+  border-collapse: separate;
+  border-spacing: 3px;
+  border: 2px solid;
+  border-color: #ffffff #ababab #ababab #ffffff;   /* 外框凸起 */
+}
+table.archive td {
+  border: 1px solid;
+  border-color: #ababab #ffffff #ffffff #ababab;   /* 每格凹陷 */
+  padding: 4px 10px;
+  vertical-align: middle;
+}
+.a-title a { font-weight: bold; }
+.a-date {
+  width: 9em;
+  text-align: right;
+  white-space: nowrap;
+  color: #ffff33;
+  letter-spacing: 0.2em;
+}
+.a-pic { width: 26%; position: relative; }
+/* 圖片縮放在格子裡，不會把列撐高 */
+.a-pic a {
+  position: absolute;
+  inset: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.a-pic img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  box-sizing: border-box;
+  border: 4px solid;
+  border-color: #2c3c8c #b8c4ff #b8c4ff #2c3c8c;   /* 和其他圖片一樣的凹陷 */
+}
+
+/* 手機：拿掉圖片欄，只留標題和日期 */
+@media (max-width: 700px) {
+  .a-pic { display: none; }
+  .a-date { width: auto; letter-spacing: 0; }
+}
