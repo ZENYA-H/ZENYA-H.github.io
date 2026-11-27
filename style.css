@@ -307,3 +307,14 @@ table.archive td {
   .a-pic { display: none; }
   .a-date { width: auto; letter-spacing: 0; }
 }
+
+.footer a {
+  display: inline-block;
+  padding: 2px 14px;
+  color: #ffffff;
+  text-decoration: none;
+  border: 2px solid;
+  border-color: #ffffff #ababab #ababab #ffffff;   /* 凸起 */
+}
+.footer a:hover { color: #ffff33; }
+.footer a:active { border-color: #ababab #ffffff #ffffff #ababab; }  /* 按下去：凹陷 */
