@@ -1,0 +1,30 @@
+---
+layout: default
+title: 文章列表 Archive
+permalink: /archive/
+---
+<h1 class="section-title">■文章列表■</h1>
+<p class="center yellow small">Archive &nbsp;/&nbsp; 全部文章・All posts</p>
+
+{% comment %} 由舊到新排列；每 6 篇共用一格圖片（取該組第一篇的封面） {% endcomment %}
+{% assign posts = site.posts | reverse %}
+{% assign prev_year = "" %}
+<table class="archive">
+{% for post in posts %}
+  {% assign y = post.date | date: "%Y" %}
+  {% assign m = post.date | date: "%m" %}
+  {% assign group = forloop.index0 | modulo: 6 %}
+  <tr>
+    <td class="a-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></td>
+    <td class="a-date">{% if y != prev_year %}{{ y }}・{{ m }}{% else %}{{ m }}{% endif %}</td>
+    {% if group == 0 %}
+      {% assign span = forloop.rindex %}
+      {% if span > 6 %}{% assign span = 6 %}{% endif %}
+      <td class="a-pic" rowspan="{{ span }}">
+        {% if post.cover %}<a href="{{ post.url | relative_url }}"><img src="{{ post.cover | relative_url }}" alt="{{ post.title }}"></a>{% endif %}
+      </td>
+    {% endif %}
+  </tr>
+  {% assign prev_year = y %}
+{% endfor %}
+</table>
