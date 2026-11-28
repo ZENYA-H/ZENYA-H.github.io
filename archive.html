@@ -4,36 +4,34 @@ title: 文章列表 Archive
 permalink: /archive/
 ---
 {% comment %}
-  文章列表頁：由舊到新排成三欄表格（標題｜年月｜封面圖）。
-  年月欄：每年第一篇顯示「年・月」，之後只顯示月份。
-  封面圖欄：每 per 篇共用一格，放該組第一篇的封面。
+  文章列表頁：以封面圖為主的格狀排列。
+  - 由新到舊，依年份分組，每組上方有年份標題。
+  - 電腦版一排四篇、手機版一排兩篇（在 style.css 第 8 區設定）。
+  - 每格：封面圖 → 標題 → 年・月。
 {% endcomment %}
-
-{% assign per = 1 %}                      {% comment %} 每幾篇共用一格圖片 {% endcomment %}
-{% assign posts = site.posts | reverse %} {% comment %} 想改成由新到舊，拿掉「| reverse」 {% endcomment %}
-{% assign prev_year = "" %}
 
 <h1 class="section-title">■文章列表■</h1>
 <p class="center yellow small">Archive &nbsp;/&nbsp; 全部文章・All posts</p>
 
-<table class="archive">
-{% for post in posts %}
+{% assign prev_year = "" %}
+{% for post in site.posts %}
   {% assign y = post.date | date: "%Y" %}
-  {% assign m = post.date | date: "%m" %}
-  {% assign group = forloop.index0 | modulo: per %}
-  <tr>
-    <td class="a-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></td>
-    <td class="a-date">{% if y != prev_year %}{{ y }}・{{ m }}{% else %}{{ m }}{% endif %}</td>
 
-    {% if group == 0 %}
-      {% comment %} 每組第一篇才產生圖片格，往下佔 span 列（最後一組可能不滿 per 篇） {% endcomment %}
-      {% assign span = forloop.rindex %}
-      {% if span > per %}{% assign span = per %}{% endif %}
-      <td class="a-pic" rowspan="{{ span }}">
-        {% if post.cover %}<a href="{{ post.url | relative_url }}"><img src="{{ post.cover | relative_url }}" alt="{{ post.title }}"></a>{% endif %}
-      </td>
-    {% endif %}
-  </tr>
+  {% comment %} 換到新的年份：先收掉上一年的格子，再開新的年份標題和格子 {% endcomment %}
+  {% if y != prev_year %}
+    {% if prev_year != "" %}</div>{% endif %}
+    <h2 class="archive-year">{{ y }}</h2>
+    <div class="archive-grid">
+  {% endif %}
+
+  <a class="archive-card" href="{{ post.url | relative_url }}">
+    <span class="archive-pic">
+      {% if post.cover %}<img src="{{ post.cover | relative_url }}" alt="{{ post.title }}">{% endif %}
+    </span>
+    <span class="archive-title">{{ post.title }}</span>
+    <span class="archive-date">{{ post.date | date: "%Y・%-m" }}</span>
+  </a>
+
   {% assign prev_year = y %}
 {% endfor %}
-</table>
+{% if prev_year != "" %}</div>{% endif %}
