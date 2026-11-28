@@ -71,7 +71,7 @@ Second English paragraph...
 | `_layouts/default.html` | 所有頁面共用的外框：頁首、ABOUT 框（含粉紅那行）、滾動框、TOP、頁尾 |
 | `_layouts/post.html` | 文章內頁：中英對照的排法、手機版語言切換按鈕 |
 | `index.html` | 首頁：「最新文章」標題和每篇文章的卡片 |
-| `archive.html` | 文章列表頁：表格內容、每幾篇共用一張圖（`per`） |
+| `archive.html` | 文章列表頁：依年份分組的封面圖格子（一排幾篇在 `style.css` 第 8 區改） |
 | `style.css` | 所有顏色、字型、大小、框線。檔案開頭有目錄，分成 9 區 |
 | `_posts/` | 文章 |
 | `images/` | 圖片 |
