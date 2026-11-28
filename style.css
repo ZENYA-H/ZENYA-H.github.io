@@ -326,6 +326,35 @@ body {
   .article img { max-width: min(100%, 33.333cqw); }
 }
 
+/* ---- 指定圖片大小（寫文章時在圖片後面加標記）----
+   ![說明](/images/a.jpg){: .s}    小：滾動框的 1/4
+   ![說明](/images/a.jpg){: .m}    中：滾動框的 1/3
+   ![說明](/images/a.jpg){: .l}    大：滾動框的 1/2
+   ![說明](/images/a.jpg){: .xl}   特大：滾動框的 2/3
+   ![說明](/images/a.jpg){: style="width: 280px"}   自訂寬度（px 或 %）
+   沒加標記 → 照原圖大小，但最寬 1/3。
+   在左右欄裡的圖，最多就是該欄的寬度。
+   手機版忽略這些標記（和一般圖片一樣最寬滿版），只影響電腦版。 */
+@media (min-width: 701px) {
+  .article img.s,
+  .article img.m,
+  .article img.l,
+  .article img.xl,
+  .article img[style*="width"] { max-width: 100%; }   /* 解除預設的 1/3 上限 */
+
+  .article img.s  { width: 25cqw; }
+  .article img.m  { width: 33.333cqw; }
+  .article img.l  { width: 50cqw; }
+  .article img.xl { width: 66.667cqw; }
+}
+@media (max-width: 700px) {
+  .article img.s,
+  .article img.m,
+  .article img.l,
+  .article img.xl,
+  .article img[style*="width"] { width: auto !important; }   /* 手機版忽略標記，和一般圖片一樣 */
+}
+
 /* ---- 同一段裡連續好幾張圖：電腦版橫排（一排最多三張），手機版直排 ----
    寫法：圖片一行一張，中間不要空行 */
 @media (min-width: 701px) {
