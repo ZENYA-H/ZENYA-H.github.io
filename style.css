@@ -405,64 +405,90 @@ body {
 
 /* =====================================================================
    8. 文章列表頁（archive.html）
-   三欄老式表格：標題｜年月｜封面圖
+   以封面圖為主的格狀排列，依年份分組（新的在上）。
+   每格是一個小「表格」：外框凸起，裡面三格凹下（圖片｜標題｜年月）。
    ===================================================================== */
-table.archive {
-  width: 100%;
+
+/* 年份標題 */
+.archive-year {
   max-width: 900px;
-  margin: 16px auto;
-  border-collapse: separate;
-  border-spacing: 3px;
-  border: 2px solid;
-  border-color: var(--raised);       /* 整個表格凸起 */
-}
-table.archive td {
-  padding: 4px 10px;
-  vertical-align: middle;
-  border: 1px solid;
-  border-color: var(--pressed);      /* 每一格凹下 */
-}
-
-/* 標題欄 */
-.a-title a { font-weight: bold; }
-
-/* 年月欄 */
-.a-date {
-  width: 9em;
+  margin: 28px auto 8px;
   color: var(--yellow);
-  letter-spacing: 0.2em;
-  text-align: right;
-  white-space: nowrap;
+  font-size: 28px;
+  font-weight: 300;
+  text-align: center;
 }
 
-/* 封面圖欄：圖片縮放在格子裡，不會把列撐高 */
-.a-pic {
-  position: relative;
-  width: 26%;
-  height: 120px;                     /* 每列的高度 */
+/* 格子：電腦版一排四篇 */
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  max-width: 900px;          /* 總寬度 */
+  margin: 0 auto 16px;
 }
-.a-pic a {
-  position: absolute;
-  inset: 8px;                        /* 圖片和格子邊緣的距離 */
+
+/* 每一篇：外框凸起，裡面三格之間留 3px 空隙 */
+.archive-card,
+.archive-card:visited {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 3px;
+  padding: 3px;
+  color: var(--text);
+  text-decoration: none;
+  border: 2px solid;
+  border-color: var(--raised);
 }
-.a-pic img {
+.archive-card:hover .archive-title { color: var(--yellow); }
+
+/* 裡面的三格：凹下 */
+.archive-pic,
+.archive-title,
+.archive-date {
   display: block;
+  border: 1px solid;
+  border-color: var(--pressed);
+  text-align: center;
+}
+
+/* 封面圖格：固定正方形，圖片縮放後置中、不變形 */
+.archive-pic {
+  position: relative;
+  aspect-ratio: 1;
+}
+.archive-pic img {
+  position: absolute;
+  inset: 0;
+  margin: auto;                      /* 置中 */
   box-sizing: border-box;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
+  max-width: calc(100% - 16px);      /* 16px = 圖片四周各留 8px */
+  max-height: calc(100% - 16px);
   border: 4px solid;
   border-color: var(--sunken);
 }
 
-/* 手機版：拿掉圖片欄，只留標題和日期 */
+/* 標題格 */
+.archive-title {
+  flex: 1;                   /* 同一排標題長短不一時，下方的日期格仍然對齊 */
+  padding: 6px 8px;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+/* 年月格 */
+.archive-date {
+  padding: 4px 8px;
+  color: var(--yellow);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+}
+
+/* 手機版：一排兩篇 */
 @media (max-width: 700px) {
-  .a-pic  { display: none; }
-  .a-date { width: auto; letter-spacing: 0; }
+  .archive-grid  { grid-template-columns: repeat(2, 1fr); }
+  .archive-title { font-size: 14px; }
 }
 
 
